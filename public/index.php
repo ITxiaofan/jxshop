@@ -1,14 +1,17 @@
 <?php
-    define('ROOT', __DIR__ . ".php");
-    include(ROOT.'libs/functions.php');
+    define('ROOT', __DIR__ . "/../");
+    require(ROOT.'libs/functions.php');
+
     // 自动加载类
     function autoload($class){
-        $path = replace('\\','/',$class);
-        reuqire(ROOT.$path.".php");
+        $path = str_replace('\\','/',$class);
+        require(ROOT . $path . '.php');
     }
-    spl_autoload_register($class);
+
+    spl_autoload_register('autoload');
+
 // 解析路由
-$controller = "controllers\\";
+$controller = "\controllers\IndexController";
 $action = "index";
 if(isset($_SERVER['PATH_INFO'])){
     $route = explode('/',$_SERVER['PATH_INFO']);
@@ -18,4 +21,3 @@ if(isset($_SERVER['PATH_INFO'])){
 }
 $C = new $controller;
 $C->$action();
-FANdd5467464...
