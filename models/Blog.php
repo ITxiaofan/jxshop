@@ -1,20 +1,10 @@
 <?php
 namespace models;
-class Blog{
 
-    public function insert(){
-
-    }
-
-    public function update(){
-
-    }
-
-    public function search(){
-
-    }
-    
-    public function delete(){
-
-    }
+class Blog extends Model
+{
+    // 设置这个模型对应的表
+    protected $table = 'blog';
+    // 设置允许的字段
+    protected $fillable = ['title','content','is_show'];
 }

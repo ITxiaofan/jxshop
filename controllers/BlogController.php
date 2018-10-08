@@ -12,7 +12,12 @@ class BlogController{
     }
     // 插入表单
     public function insert(){
+        $blog = new \models\Blog;
 
+        //填充数据
+        $blog->fill($_POST);
+
+        $blog->insert();
     }
     // 修改表单
     public function edit(){
