@@ -290,15 +290,19 @@
                 url:"/goods/ajax_get_cat?id="+id,
                 dataType:'json',
                 success:function(data){
-                    var str = "<option value=''>选择二级分类</option>";
+                    var str = "";
                     for(var i=0;i<data.data.length;i++){
                         str += '<option value="'+data.data[i].id+'">'+data.data[i].cat_name+'</option>';
                     }
                     // 把拼好的option放到第二个下拉框中
                     $("select[name=cat2_id]").html(str);
+                    // 触发第二个框的chenge时间
+                    $("select[name=cat2_id]").trigger('change');
                 }  
             });
         }
+        // 清空第三个框
+        // $("select[name=cat3_id").html('')
     });
 
 
@@ -314,7 +318,7 @@
                 url:"/goods/ajax_get_cat?id="+id,
                 dataType:'json',
                 success:function(data){
-                    var str = "<option value=''>选择三级分类</option>";
+                    var str = "";
                     for(var i=0;i<data.data.length;i++){
                         str += '<option value="'+data.data[i].id+'">'+data.data[i].cat_name+'</option>';
                     }

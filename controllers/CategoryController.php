@@ -7,8 +7,20 @@ class CategoryController{
     // 列表页
     public function index()
     {
+
         $model = new Category;
-        $data = $model->findAll();
+        $tree = $model->tree();
+        foreach($tree as $v){
+            echo str_repeat('&nbsp;',$v['level']*8) . $v['cat_name']."<hr>";
+        }
+        echo "<pre>";
+        var_dump($tree);
+
+        $data = $model->findAll([
+            'order_by' =>'concat(path,id,"-")',
+            'order_way' => 'asc',
+            'per_page' => 999999999,
+        ]);
         view('category/index', $data);
     }
 
